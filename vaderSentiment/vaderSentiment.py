@@ -196,17 +196,18 @@ class SentimentIntensityAnalyzer(object):
     Give a sentiment intensity score to sentences.
     """
 
-    def __init__(self, lexicon_file="vader_lexicon.txt", emoji_lexicon="emoji_utf8_lexicon.txt"):
+    # def __init__(self, lexicon_file="vader_lexicon.txt", emoji_lexicon="emoji_utf8_lexicon.txt"):
+    def __init__(self, lexicon_file="vader_lexicon.txt"):
         _this_module_file_path_ = os.path.abspath(getsourcefile(lambda: 0))
         lexicon_full_filepath = os.path.join(os.path.dirname(_this_module_file_path_), lexicon_file)
         with codecs.open(lexicon_full_filepath, encoding='utf-8') as f:
             self.lexicon_full_filepath = f.read()
         self.lexicon = self.make_lex_dict()
 
-        emoji_full_filepath = os.path.join(os.path.dirname(_this_module_file_path_), emoji_lexicon)
-        with codecs.open(emoji_full_filepath, encoding='utf-8') as f:
-            self.emoji_full_filepath = f.read()
-        self.emojis = self.make_emoji_dict()
+        # emoji_full_filepath = os.path.join(os.path.dirname(_this_module_file_path_), emoji_lexicon)
+        # with codecs.open(emoji_full_filepath, encoding='utf-8') as f:
+        #     self.emoji_full_filepath = f.read()
+        # self.emojis = self.make_emoji_dict()
 
     def make_lex_dict(self):
         """
@@ -237,20 +238,20 @@ class SentimentIntensityAnalyzer(object):
         valence.
         """
         # convert emojis to their textual descriptions
-        text_no_emoji = ""
-        prev_space = True
-        for chr in text:
-            if chr in self.emojis:
-                # get the textual description
-                description = self.emojis[chr]
-                if not prev_space:
-                    text_no_emoji += ' '
-                text_no_emoji += description
-                prev_space = False
-            else:
-                text_no_emoji += chr
-                prev_space = chr == ' '
-        text = text_no_emoji.strip()
+        # text_no_emoji = ""
+        # prev_space = True
+        # for chr in text:
+        #     if chr in self.emojis:
+        #         # get the textual description
+        #         description = self.emojis[chr]
+        #         if not prev_space:
+        #             text_no_emoji += ' '
+        #         text_no_emoji += description
+        #         prev_space = False
+        #     else:
+        #         text_no_emoji += chr
+        #         prev_space = chr == ' '
+        # text = text_no_emoji.strip()
 
         sentitext = SentiText(text)
 
