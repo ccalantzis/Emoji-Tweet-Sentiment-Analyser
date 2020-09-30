@@ -1,4 +1,4 @@
-# NLP_assignment3
+# Emoji-Tweet-Sentiment-Analyser
 
 Authors: Mustafa Barodawala and Catriona Calantzis
 
